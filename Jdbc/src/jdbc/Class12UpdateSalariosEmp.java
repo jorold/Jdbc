@@ -35,7 +35,7 @@ public class Class12UpdateSalariosEmp {
             pst = cn.prepareStatement(listing);
             pst.setString(1, department);
             ResultSet rs = pst.executeQuery();
-            while(rs.next()){
+            while (rs.next()) {
                 String sdname = rs.getString("apellido");
                 String salary = rs.getString("salario");
                 System.out.println(sdname + "---" + salary);
@@ -45,5 +45,6 @@ public class Class12UpdateSalariosEmp {
             response = keyboard.nextLine();
         }
         System.out.println("End of program");
+        cn.close();
     }
 }
