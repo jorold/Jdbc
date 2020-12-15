@@ -3,6 +3,7 @@ package jdbc;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Scanner;
 import oracle.jdbc.driver.OracleDriver;
@@ -29,6 +30,17 @@ public class Class12UpdateSalariosEmp {
             pst.setString(2, department);
             int modified = pst.executeUpdate();
             System.out.println("Modified employees " + modified);
+            String listing = "select apellido,salario from emp where dept_no ="
+                    + "(select dept_no from dept where upper(dnombre) = upper(?))";
+            pst = cn.prepareStatement(listing);
+            pst.setString(1, department);
+            ResultSet rs = pst.executeQuery();
+            while(rs.next()){
+                String sdname = rs.getString("apellido");
+                String salary = rs.getString("salario");
+                System.out.println(sdname + "---" + salary);
+                System.out.println("-------------------------");
+            }
             System.out.println("Do you want to modify another department? (y/n)");
             response = keyboard.nextLine();
         }
