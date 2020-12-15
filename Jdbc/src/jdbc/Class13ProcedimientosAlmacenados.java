@@ -30,6 +30,6 @@ public class Class13ProcedimientosAlmacenados {
         cst.setInt(1, empno);
         int eliminados = cst.executeUpdate();
         System.out.println("Empleados eliminados " + eliminados);
-        cn.clos();
+        cn.close();
     }
 }
